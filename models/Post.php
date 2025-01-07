@@ -163,4 +163,32 @@ class Post
         printf("Error: %s.\n", $stmt->error);
         return false;
     }
+
+    // Delete Post ..........................delete single post.......................
+    public function delete()
+    {
+
+        // Create query
+        $query = 'DELETE FROM ' . $this->table . ' WHERE id=:id';
+
+        // Prepare statement
+        $stmt = $this->conn->prepare($query);
+
+        // because we need only an id
+
+        // clean data
+        $this->id = htmlspecialchars(strip_tags($this->id));
+
+        // bind id
+        $stmt->bindParam(':id', $this->id);
+
+        // Execute query
+        if ($stmt->execute()) {
+            return true;
+        }
+
+        // Print error if something goes wrong
+        printf("Error: %s.\n", $stmt->error);
+        return false;
+    }
 } // end of Post class
