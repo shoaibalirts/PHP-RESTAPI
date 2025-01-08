@@ -39,12 +39,12 @@ class Post
                     ORDER BY 
                     p.created_at DESC';
 
+        // var_dump($this->conn); // PDO Object
         // Prepare statement
         $stmt = $this->conn->prepare($query);
-
+        var_dump($stmt);
         // Execute query
         $stmt->execute();
-
         return $stmt;
     } // end of read function
 
